@@ -1,0 +1,69 @@
+1)  How to create new project -  ng new [project_name]
+ eg. ng new flipcart
+
+
+
+2) Angular Features/ Angular Basic building blocks
+  A) Modules
+  B) Component
+  C) Data Binding
+  D) Service 
+  E) Dependecy Injection
+  F) Pipe
+  G) Directive
+
+
+
+3) Folder structure 
+
+
+4) How Angular Application start/ bootstraping process of angular app 
+
+  to start application- "ng serve" or " npm run start"
+   --> package.json --> script-> start--> Angular.json--> main.ts--> bootstrapmodule(Appmodule)
+   --> Bootstarp;[Appcomponent] --> appcomponent--> selector name --> index.html
+
+
+
+5) Modules
+   How to create module- "ng g m [Name of module]"
+   e.g- ng g m registration
+
+   how to create module with routing file
+   eg. ng g m registration --routing
+
+   --registration.module.ts.
+   @ngModule{
+    declaration: []  -- we need add components which we are using in this module inside declaration 
+    array;
+    imports: []  ---- we can import other modules
+   } - decorator
+
+
+
+6) COMPONENT-
+   -- cmd to create component- "ng g c [name of component]
+   e.g- ng g c login-page
+
+   it craetes 4 file
+   1) html - html code /view/ template
+   2) css - styling
+   3) spec.ts- 
+   4) .ts- functionality
+
+   ts- typescript
+
+
+7) Data Binding
+   Types of data binding
+   1) One way data binding
+   2) Two way data binding
+
+   1) One way data binding-
+     A) interpolation / string interpolation- it bind data from .ts to .html - syntax {{name of variable}} ;
+     B) Property - it bind data from .ts to .html - syntac [name of variable] ;
+     C) Event - it bind data from .html to .ts - syntac (name of event);
+     e.g. click, moushover
+
+   2) Two way data binding
+     A) ngModel - syntax [(ngModel)]
