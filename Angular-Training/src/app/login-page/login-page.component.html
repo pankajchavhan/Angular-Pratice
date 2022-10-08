@@ -1,9 +1,14 @@
-<p>login-page works!</p>
+<div class="login">
+    <p>login-page works!</p>
 
-<!-- Interpolation data binding -->
-<p>First Name {{name}} {{lastname}}</p>
-<!-- Propert Data binding -->
-<button [disabled]="isDisabled">Login</button> 
-<!-- Event data binding -->
-<button (click)="onSubmit()">Count</button>
+    <!-- Interpolation data binding -->
+    <p>First Name {{name}} {{lastname}}</p>
+    <!-- Propert Data binding -->
+    <button [disabled]="isDisabled">Login</button>
+    <!-- Event data binding -->
+    <button (click)="onSubmit()">Count</button>
 
+    <!-- Interpolotion data binding -->
+    <p>{{personalDetails.fName}}</p>
+    <p>{{personalDetails.lName}}</p>
+</div>
