@@ -1,0 +1,75 @@
+
+1) Javasript data types
+2) Service 
+3) Dependancy Injection 
+
+1) Javasript data typescript
+  There are two data types in Javasript
+  1) Primitive data types
+  2) Non Primitive data type
+
+1) Primitive data types(it stores only single value)
+  A) string - eg. var name = "pankaj"
+  B) number - eg var age = 5
+  C) boolean - eg. isvalid = true
+  D) undefined - var name;
+  E) null - eg. var name = null
+
+2) Non Primitive data type(it stores multiple value )
+  A) Array - eg. var array = [1,2,3,45]
+  B)Object- var personalDetails = {
+    fNmae: "pankaj",
+    lName: "chavhan"
+  }
+
+  2) typescript vs Javasript
+
+  javascript is dynamically typed langulage
+
+  var name = "pankaj"
+
+  this.name = 5
+
+  this.name = true
+
+  typescript is staically typed langulage
+
+  var name:string = "pankaj"
+   this.name = 5 // error
+   this.name = true //error
+
+   2) Ways of component loading
+    1) static - 
+    -copy selector name of component 
+    - use as s element in app.component.html
+
+    eg. login.component.ts
+    @component{
+        selector: "app-login"
+    }
+
+    app.component.html
+    <app-login></app-login>
+
+    2) dynamic
+    we need to use routing to load component dynamicaly
+
+   2) Service
+    how to create service 
+    ng g s [name of service]
+    eg. ng g s login
+
+    then it will create two files 1) login.service.ts 2) login.service.spec.ts
+
+        we need to keem common reusable code inside service
+         service class is decorated with @Injectable
+
+   3) Dependacy Injection-
+    to inject external dependance 
+     
+    in component.ts file 
+
+    constructor(private loginService: LoginService)
+
+
+
