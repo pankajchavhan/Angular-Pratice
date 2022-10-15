@@ -1,3 +1,5 @@
 .app{
     background-color: coral;
+    border: solid;
+    padding: 10px;
 }
