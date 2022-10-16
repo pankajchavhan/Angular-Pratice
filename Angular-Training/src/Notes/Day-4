@@ -1,0 +1,24 @@
+** How To use "routerLink" to load dynamic component **
+
+step 1- create component 
+
+step2 - In app.routing.module.ts -> Inside Routes Arrary -> create object eg.
+       const Routes:Routes = [
+        {
+            path: 'registartion',  //path name
+            component: Registartioncomponent
+        },
+         {
+            path: 'home',  //path name
+            component: Homecomponent
+        }
+       ]  
+
+step 3- go to app.component.html -> make sure <router-outlet></router-outlet> is added 
+      (if not available add it manually)
+
+step 4 - then go to any component.html file where we want to add button or add navbar from bootstarp
+      e.g navbar.component.html
+
+      <button routerLink = "registartion" >Registration</button>
+

@@ -1,0 +1,33 @@
+** How to Add Bootstarp in Angular Project **
+
+Step 1- go to bootstarp 5 website
+        https://getbootstrap.com/docs/5.0/getting-started/introduction/
+
+step2- copy CSS link and add it inside head tag of index.html
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+step3- copy Bundle link and add it inside body tag of index.html
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+
+
+ ***** Then to confirm Bootstarp is added or not in our Project *****
+
+        Step-1- go to https://getbootstrap.com/docs/5.0/getting-started/introduction/
+
+        step 2- go to Component section after click on above link
+
+        step 3- select button section
+
+        step 4- Then copy code from any one example
+
+        e.g.
+        <button type="button" class="btn btn-primary">Primary</button>
+        <button type="button" class="btn btn-secondary">Secondary</button>
+        <button type="button" class="btn btn-success">Success</button>
+        <button type="button" class="btn btn-danger">Danger</button>
+        <button type="button" class="btn btn-warning">Warning</button>
+        <button type="button" class="btn btn-info">Info</button>
+        <button type="button" class="btn btn-light">Light</button>
+        <button type="button" class="btn btn-dark">Dark</button>
+        <button type="button" class="btn btn-link">Link</button>

@@ -61,7 +61,7 @@
 
     then it will create two files 1) login.service.ts 2) login.service.spec.ts
 
-        we need to keem common reusable code inside service
+        we need to keep common reusable code inside service
          service class is decorated with @Injectable
 
    3) Dependacy Injection-

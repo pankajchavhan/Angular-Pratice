@@ -1,0 +1,63 @@
+* How to load Dynamic Component *
+
+step1- create component 
+step2 - In app.routing.module.ts -> Inside Routes Arrary -> create object eg.
+       const Routes:Routes = [
+        {
+            path: 'login',  //path name
+            component: logincomponent
+        }
+       ]  
+
+step 3- go to app.component.html -> make sure <router-outlet></router-outlet> is added 
+      (if not aailable add it manually)
+
+step 4 - then hit URL in browser for particular path
+        e.g.  localhost:4200/login
+
+
+** Types of Routing **
+1) Redirect Routing
+2) Wild card routing
+    
+    1) Redirect Routing (it is used to redirect on default path)
+
+    step 1- create component 
+    step 2- In app.routing.module.ts -> Inside Routes Arrary -> create object eg.
+       const Routes:Routes = [
+           {
+             path:'',          //empty path
+             redirectTo:'login',   // when there is empty path it should redirect to login path
+             pathMatch:'full'     // it means path should match exactly empty
+           }
+       ]  
+
+    step 3- check in url by hitting localhost:4200 -----> 
+            then it should redirect to localhost:4200/login
+       
+    2) Wild card routing (it is used to show page not found error when user hits wrong URL)
+
+    step 1- create component  e.g ng g c page-not-found
+
+    step 2- In app.routing.module.ts -> Inside Routes Arrary -> create object for wild card     routing    at the end of routes array because it wil not check the path after wild c ard  routing object  eg.
+       const Routes:Routes = [
+          // redirect routing
+           {
+             path:'',          //empty path
+             redirectTo:'login',   // when there is empty path it should redirect to login path
+             pathMatch:'full'     // it means path should match exactly empty
+           },
+           {
+            path: 'login',  //path name
+            component: logincomponent
+           },
+
+           //wild card routing
+           {
+            path: '**',  //path name            
+            component: pagenotfoundcomponent
+           }
+       ]  
+
+    step 3- check in url by hitting localhost:4200/edjvdf -----> 
+            then it should show page not found error 
