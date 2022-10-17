@@ -1,0 +1,78 @@
+****  Service  ****
+*******************
+
+1) Best practice to create Service-> create service folder -> and then create all services inside that folder
+2) How to create Service-  ng g s [name-of-service]
+  eg. ng g s login
+
+2) It will generate two files
+  i.e   login.service.ts   &  login.service.spec.ts
+
+3) login.service.ts
+   I) import { Injectable } from '@angular/core';
+
+        @Injectable({
+           providedIn: 'root'
+         })
+        export class LoginService {
+
+          constructor() { }
+
+        }
+
+   II) this file is decorated with "@Injectable" decorator, with the help of this we can identify this is service class.
+
+   III) providedIn: 'root'
+       it means our service is available to use throughout our application(so it is called as singleton service)
+
+    IV) We can write code inside service which we want to share in multiple components also
+       we need call api using http methods like get,put,post,delete from services.
+
+     V) Then to use this service inside the component or any other service we need to inject      service inside constructor 
+       eg.  login/component.ts
+
+       import { Component } from '@angular/core';
+
+         @Component({
+          selector: 'app-login',
+          templateUrl: './login.component.html',
+          styleUrls: ['./login.component.css']
+         })
+           export class LoginComponent {
+            //we need to inject service using dependency injection and create instance of that   sevice class like below
+
+            name:string;
+
+            constructor(private loginService: LoginService){}
+
+            //then with this instance we can access all the methods from that service
+
+            //code inside ****** it should be in service 
+            **********************************************************************
+            login.service.ts
+
+            e.g (if i have one method in LoginService like  
+            getData(){
+                const name = "pankaj";
+                return name;
+                })
+            ************************************************************************
+            
+            this.loginService.getData(); 
+            //we can store this data in variable like  this.name =this.loginService.getData();
+            
+          }
+
+        VI) login.component.html
+         //with the help of "Interpolation data binding"
+           <h1> {{name}} <h1>
+
+
+
+
+    
+
+
+
+       
+
