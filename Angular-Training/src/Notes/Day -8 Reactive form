@@ -1,0 +1,125 @@
+2) Reactive Forms / Dynamic or model driven Forms
+
+-> It is used to design complex forms
+-> most of the code is written in .ts file
+-> unit testing is easy
+-> need to import  ReactiveFormsModule"
+
+--------------------------------------------------------------
+Steps to create reactive Forms
+
+Step 1: We need to import "ReactiveFormsModule" inside "app.module.ts" files imports array
+             eg.  imports: [ReactiveFormsModule]
+
+---------------------------------------------------------------
+ Step 2: create simple html form using form tag
+            eg/  login.component.html
+ <form>
+  <p>
+    <label for="firstname">First Name</label>
+    <input type="text" id="firstname" name="firstname">
+  </p>
+  <p>
+    <label for="lastname">Last Name</label>
+    <input type="text" id="lastname" name="lastname">
+  </p>
+  <p>
+    <label for="email">Email </label>
+    <input type="text" id="email" name="email">
+  </p>
+  </form>
+--------------------------------------------------------------
+Step 3: Then we need to property binding syntax and inside it is "[formGroup]"   and then give the name of form,, here "loginForm" is the name of form
+
+     eg.([formGroup]="loginForm"..... here loginForm is name of form. we can give any name to it & "[formGroup]" is a inbuild directive with the help of this angular identifies this is Reactive form. (// FormGroup is a group of // FormControls and // FormControl is a each field inside // FormGroup... it can be a <input>, <radio>, <textarea>, <checkbox>  etc. ))
+
+     login.component.html
+
+  <form [formGroup]="loginForm">                                 // FormGroup
+  <p>
+    <label for="firstname">First Name</label>
+    <input type="text" id="firstname" name="firstname">        // FormControl
+  </p>
+  <p>
+    <label for="lastname">Last Name</label>
+    <input type="text" id="lastname" name="lastname">           // FormControl
+  </p>
+  <p>
+    <label for="email">Email </label>
+    <input type="text" id="email" name="email">                 // FormControl
+  </p>
+  </form>
+----------------------------------------------------------------------------
+Step 4: for every form fied(FormControl) we need to add attribute "formControlName" and give name to it
+
+     login.component.html
+
+ <form [formGroup]="loginForm">                                 // FormGroup
+  <p>
+    <label for="firstname">First Name</label>
+    <input type="text" id="firstname" formControlName="firstname">        //FormControl
+  </p>
+  <p>
+    <label for="lastname">Last Name</label>
+    <input type="text" id="lastname" formControlName="lastname">          //FormControl
+  </p>
+  <p>
+    <label for="email">Email </label>
+    <input type="text" id="email" formControlName="email">                // FormControl
+  </p>
+  </form>
+
+  ----------------------------------------------------------------------
+    Step 5: Add button to submit form inside form tag 
+          eg. "onSubmit()"
+
+  login.component.html
+
+ <form [formGroup]="loginForm">                                 // FormGroup
+  <p>
+    <label for="firstname">First Name</label>
+    <input type="text" id="firstname" formControlName="firstname">        //FormControl
+  </p>
+  <p>
+    <label for="lastname">Last Name</label>
+    <input type="text" id="lastname" formControlName="lastname">          //FormControl
+  </p>
+  <p>
+    <label for="email">Email </label>
+    <input type="text" id="email" formControlName="email">                // FormControl
+  </p>
+   <button type="submit" (click)="onSubmit()">Submit</button>
+  </form>
+  ------------------------------------------------------------------------
+  Step 6: Create varible inside .ts file with same name wich we given to the form and its form should be FormGroup
+e.g
+ login.component.ts
+
+ loginForm:FormGroup ;
+ -------------------------------------------------------------------------
+  Step 7: inject inbuild "formbuilder" service
+  eg.
+  constructor(private formbuilder: FormBuilder){}
+  ------------------------------------------------------------------------
+  Step 8: Create model for form inside ngOnit()
+  eg.
+      ngOnit(){
+        this.loginForm = this.formbuilder.group({
+            firstname: ['', Validators.required],         
+            lastname: ['', Validators.required],
+            email: ['', Validators.required],
+        });
+
+        //here "firstname" this should be same name as we given in field  with "formControlname"
+        and same for "lastname" and "email" also
+      }
+
+-----------------------------------------------------------------------------
+Step 9: then create method inside .ts file  which we can call when submit button is clicked which we allready added in Step 5
+
+login.component.ts
+
+onSubmit(){
+    console.log(this.loginForm.value);
+}
+------------------------------------------------------------------------------

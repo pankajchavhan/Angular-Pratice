@@ -1,0 +1,124 @@
+**************************
+***** Form ***************
+
+Forms are basically used to collect data from user
+to get data from user with proper format we have 4 inbuild validators in angular 
+1)minlength 2)maxlength 3) required 4) pattern
+also we can create custom validators for form fields
+
+-> In Angular there are two types of forms
+ 
+ 1) Template driven/ static forms
+ 2) Reactive / dynamic/ modulare forms
+ --------------------------------------------------------
+ Concepts to be learn in angular Forms
+   1) Creating form 
+   2) setvalue
+   3) patchvalue
+   4) validation
+   5) reset form
+   6) FormGroup
+   7) FormControl
+   8) FormBuilder
+   9) FormArray
+
+ ---------------------------------------------------------
+ 1) Template Driven forms
+
+   -> This type of form used to develop simple forms having no complex validations and fields
+   -> most of the code is written in template file like validation.. so it is called template  driven form
+   -> unit testing is challenging in template driven form
+   -> uses Two way data binding to bind data
+ 
+  --------------------------------------------------------
+   * Steps to develop Template driven Forms
+  --------------------------------------------------------
+     Step 1: We need to import "FormsModule" inside "app.module.ts" files imports array
+             eg.  imports: [FormsModule]
+-------------------------------------------------------------
+     Step 2: create simple html form using form tag
+            eg/  login.component.html
+ <form>
+  <p>
+    <label for="firstname">First Name</label>
+    <input type="text" id="firstname" name="firstname">
+  </p>
+  <p>
+    <label for="lastname">Last Name</label>
+    <input type="text" id="lastname" name="lastname">
+  </p>
+  <p>
+    <label for="email">Email </label>
+    <input type="text" id="email" name="email">
+  </p>
+  </form>
+---------------------------------------------------------------------------
+     Step 3: Then we need to create one "template reference variable" and type of this is "ngForm" inside form tag  
+
+     eg.(#loginForm = "ngForm"..... here #loginForm is a template refrence variable.. we can give any name to it & "ngForm" is a inbuild directive with the help of this angular identifies this is template driven form. (// FormGroup is a group of // FormControls and // FormControl is a each field inside // FormGroup... it can be a <input>, <radio>, <textarea>, <checkbox>  etc. ))
+
+     login.component.html
+
+  <form #loginForm = "ngForm">                                 // FormGroup
+  <p>
+    <label for="firstname">First Name</label>
+    <input type="text" id="firstname" name="firstname">        // FormControl
+  </p>
+  <p>
+    <label for="lastname">Last Name</label>
+    <input type="text" id="lastname" name="lastname">           // FormControl
+  </p>
+  <p>
+    <label for="email">Email </label>
+    <input type="text" id="email" name="email">                 // FormControl
+  </p>
+  </form>
+----------------------------------------------------------------------------------------
+     Step 4: for every form fied(FormControl) should have a "name" attribute and "[(ngModel)]" attached to it. 
+
+     login.component.html
+
+ <form #loginForm = "ngForm">                                 // FormGroup
+  <p>
+    <label for="firstname">First Name</label>
+    <input type="text" id="firstname" name="firstname" [(ngModel)]="firstname">        //FormControl
+  </p>
+  <p>
+    <label for="lastname">Last Name</label>
+    <input type="text" id="lastname" name="lastname" [(ngModel)]="lastname">          //FormControl
+  </p>
+  <p>
+    <label for="email">Email </label>
+    <input type="text" id="email" name="email" [(ngModel)]="email">                // FormControl
+  </p>
+  </form>
+
+  // here value of "name" attribute and "[(ngModel)]" should be same
+------------------------------------------------------------------------------
+     Step 5: Add button to submit form inside form tag and inside method pass name of the form
+          here name of the form is "#loginForm" so we have passed this without hash inside "onSubmit()"
+          eg. "onSubmit(loginForm)"
+
+<form #loginForm = "ngForm">                                 // FormGroup
+  <p>
+    <label for="firstname">First Name</label>
+    <input type="text" id="firstname" name="firstname" [(ngModel)]="firstname">        //FormControl
+  </p>
+  <p>
+    <label for="lastname">Last Name</label>
+    <input type="text" id="lastname" name="lastname" [(ngModel)]="lastname">          //FormControl
+  </p>
+  <p>
+    <label for="email">Email </label>
+    <input type="text" id="email" name="email" [(ngModel)]="email">                // FormControl
+  </p>
+  <button type="submit" (click)="onSubmit(loginForm)">Submit</button>
+  </form>
+------------------------------------------------------------------------------------------------
+    Step 6: Create method inside ts file
+      eg. login.components.ts
+     
+     onSubmit(loginForm: NgForm){
+       console.log(loginForm.value)  //here we will get the form data when click on button
+     }
+---------------------------------------------------------------------------------------------
