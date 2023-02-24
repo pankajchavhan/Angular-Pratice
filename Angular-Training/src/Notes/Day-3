@@ -10,7 +10,7 @@ step2 - In app.routing.module.ts -> Inside Routes Arrary -> create object eg.
        ]  
 
 step 3- go to app.component.html -> make sure <router-outlet></router-outlet> is added 
-      (if not aailable add it manually)
+      (if not available add it manually)
 
 step 4 - then hit URL in browser for particular path
         e.g.  localhost:4200/login

@@ -75,7 +75,7 @@ Step 4: for every form fied(FormControl) we need to add attribute "formControlNa
 
   login.component.html
 
- <form [formGroup]="loginForm">                                 // FormGroup
+ <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">                                 // FormGroup
   <p>
     <label for="firstname">First Name</label>
     <input type="text" id="firstname" formControlName="firstname">        //FormControl
@@ -88,7 +88,7 @@ Step 4: for every form fied(FormControl) we need to add attribute "formControlNa
     <label for="email">Email </label>
     <input type="text" id="email" formControlName="email">                // FormControl
   </p>
-   <button type="submit" (click)="onSubmit()">Submit</button>
+   <button type="submit" >Submit</button>
   </form>
   ------------------------------------------------------------------------
   Step 6: Create varible inside .ts file with same name wich we given to the form and its form should be FormGroup
@@ -104,10 +104,14 @@ e.g
   Step 8: Create model for form inside ngOnit()
   eg.
       ngOnit(){
+        this.buildForm();
+      }
+
+      buildForm(){
         this.loginForm = this.formbuilder.group({
-            firstname: ['', Validators.required],         
-            lastname: ['', Validators.required],
-            email: ['', Validators.required],
+            firstname: [''],         
+            lastname: [''],
+            email: [''],
         });
 
         //here "firstname" this should be same name as we given in field  with "formControlname"
@@ -122,4 +126,100 @@ login.component.ts
 onSubmit(){
     console.log(this.loginForm.value);
 }
-------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------
+step 9: How to set default value in Reacive forms
+
+ <button type="button" (click)="setDefault()">setDefault Value</button>
+ 
+  setDefault() {
+ 
+    let userDetails = {
+      firstname: "Sachin",
+      lastname: "Tendulkar",
+      email: "sachin@gmail.com",
+    };
+ 
+    this.loginForm.setValue(userDetails);
+  }
+
+  ----------------------------------------------------------------------------------------
+  step10:  patchvalue in Reacive forms
+
+  <button type="button" (click)="patchName()">patchvalue Value</button>
+
+  patchName() {
+    let contact = {
+      firstname: "Rahul",
+      lastname: "Dravid",
+    }
+ 
+    this.loginForm.patchValue(contact);
+ 
+  }
+  ----------------------------------------------------------------------------------------
+   step11:  reset value in Reacive forms
+
+<button type="button" (click)="reset()">reset</button>
+
+   reset() {
+    this.reactiveForm.reset();
+  }
+
+---------------------------------------------------------------------------------------------
+step12: Validations in Reactive forms
+login.component.html
+
+ <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">                                 // FormGroup
+  <p>
+    <label for="firstname">First Name</label>
+    <input type="text" id="firstname" formControlName="firstname">        //FormControl
+  </p>
+  <div *ngIf="firstname.invalid && (firstname.dirty ||firstname.touched) && firstname.errors.required">
+      First Name is required
+  </div>
+  <p>
+    <label for="lastname">Last Name</label>
+    <input type="text" id="lastname" formControlName="lastname">          //FormControl
+  </p>
+  <div *ngIf="lastname.invalid && (lastname.dirty ||lastname.touched) && lastname.errors.required">
+      Lastname Name is required
+  </div>
+  <div *ngIf="lastname.invalid && (firstname.dirty ||firstname.touched) && lastname.errors.minlength">
+      Lastname minlength should be 10 character
+  </div>
+  <p>
+    <label for="email">Email </label>
+    <input type="text" id="email" formControlName="email">                // FormControl
+  </p>
+   <button type="submit" >Submit</button>
+  </form>
+
+
+  component.ts   
+  eg.
+      ngOnit(){
+        this.buildForm();
+      }
+
+      buildForm(){
+        this.loginForm = this.formbuilder.group({
+            firstname: ['', vaidators.required],         
+            lastname: ['',vaidators.required, Validators.minLength(10)],
+            email: ['',vaidators.required],
+        });
+
+        //here "firstname" this should be same name as we given in field  with "formControlname"
+        and same for "lastname" and "email" also
+      }
+
+      get firstname() {
+         return this.loginForm.get('firstname');
+      } 
+
+      get lastname() {
+         return this.loginForm.get('lastname');
+      }
+
+      get email() {
+         return this.loginForm.get('email');
+      }

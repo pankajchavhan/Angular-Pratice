@@ -9,7 +9,7 @@ also we can create custom validators for form fields
 -> In Angular there are two types of forms
  
  1) Template driven/ static forms
- 2) Reactive / dynamic/ modulare forms
+ 2) Reactive / dynamic/ model driven forms
  --------------------------------------------------------
  Concepts to be learn in angular Forms
    1) Creating form 
@@ -74,22 +74,22 @@ also we can create custom validators for form fields
   </p>
   </form>
 ----------------------------------------------------------------------------------------
-     Step 4: for every form fied(FormControl) should have a "name" attribute and "[(ngModel)]" attached to it. 
+     Step 4: for every form fied(FormControl) should have a "name" attribute and "ngModel" attached to it. 
 
      login.component.html
 
  <form #loginForm = "ngForm">                                 // FormGroup
   <p>
     <label for="firstname">First Name</label>
-    <input type="text" id="firstname" name="firstname" [(ngModel)]="firstname">        //FormControl
+    <input type="text" id="firstname" name="firstname" ngModel>        //FormControl
   </p>
   <p>
     <label for="lastname">Last Name</label>
-    <input type="text" id="lastname" name="lastname" [(ngModel)]="lastname">          //FormControl
+    <input type="text" id="lastname" name="lastname" ngModel>          //FormControl
   </p>
   <p>
     <label for="email">Email </label>
-    <input type="text" id="email" name="email" [(ngModel)]="email">                // FormControl
+    <input type="text" id="email" name="email" ngModel>                // FormControl
   </p>
   </form>
 
@@ -99,20 +99,20 @@ also we can create custom validators for form fields
           here name of the form is "#loginForm" so we have passed this without hash inside "onSubmit()"
           eg. "onSubmit(loginForm)"
 
-<form #loginForm = "ngForm">                                 // FormGroup
+<form #loginForm = "ngForm" (ngSubmit)="onSubmit(loginForm)">                                 // FormGroup
   <p>
     <label for="firstname">First Name</label>
-    <input type="text" id="firstname" name="firstname" [(ngModel)]="firstname">        //FormControl
+    <input type="text" id="firstname" name="firstname" ngModel>        //FormControl
   </p>
   <p>
     <label for="lastname">Last Name</label>
-    <input type="text" id="lastname" name="lastname" [(ngModel)]="lastname">          //FormControl
+    <input type="text" id="lastname" name="lastname" ngModel>          //FormControl
   </p>
   <p>
     <label for="email">Email </label>
-    <input type="text" id="email" name="email" [(ngModel)]="email">                // FormControl
+    <input type="text" id="email" name="email" ngModel>                // FormControl
   </p>
-  <button type="submit" (click)="onSubmit(loginForm)">Submit</button>
+  <button type="submit" >Submit</button>
   </form>
 ------------------------------------------------------------------------------------------------
     Step 6: Create method inside ts file
@@ -122,3 +122,86 @@ also we can create custom validators for form fields
        console.log(loginForm.value)  //here we will get the form data when click on button
      }
 ---------------------------------------------------------------------------------------------
+   Step 7: how to reset form
+login.component.html
+
+   <form #loginForm = "ngForm" (ngSubmit)="onSubmit(loginForm)">                                 // FormGroup
+  <p>
+    <label for="firstname">First Name</label>
+    <input type="text" id="firstname" name="firstname" ngModel>        //FormControl
+  </p>
+  <p>
+    <label for="lastname">Last Name</label>
+    <input type="text" id="lastname" name="lastname" ngModel>          //FormControl
+  </p>
+  <p>
+    <label for="email">Email </label>
+    <input type="text" id="email" name="email" ngModel>                // FormControl
+  </p>
+  <button type="submit" >Submit</button>
+  <button type="button" (click)="resetForm(loginForm)">Reset</button>
+  </form>
+
+
+  eg .login.component.ts
+
+  resetForm(loginForm: NgForm){
+    loginForm.resetForm();
+  }
+  ---------------------------------------------------------------------------------------------
+  step 8: how to set form field values
+  login.component.html
+
+   <form #loginForm = "ngForm" (ngSubmit)="onSubmit(loginForm)">                                 // FormGroup
+  <p>
+    <label for="firstname">First Name</label>
+    <input type="text" id="firstname" name="firstname" ngModel [(ngModel)]="=user.firstname">        //FormControl
+  </p>
+  <p>
+    <label for="lastname">Last Name</label>
+    <input type="text" id="lastname" name="lastname" ngModel [(ngModel)]="=user.lastname">          //FormControl
+  </p>
+  <p>
+    <label for="email">Email </label>
+    <input type="text" id="email" name="email" ngModel [(ngModel)]="=user.email">                // FormControl
+  </p>
+  <button type="submit" >Submit</button>
+  <button type="button" (click)="resetForm(loginForm)">Reset</button>
+  </form>
+
+
+  eg .login.component.ts
+user
+  ngOnit(){
+    this.user = {
+      firstname: 'pankaj',
+      lastname: 'chavhan',
+      email: 'test@gmail.com'
+    }
+  }
+
+  ----------------------------------------------------------------------
+step: 9 How to check form ststus
+
+<form #loginForm = "ngForm" (ngSubmit)="onSubmit(loginForm)">                                 // FormGroup
+  <p>
+    <label for="firstname">First Name</label>
+    <input type="text" id="firstname" name="firstname" ngModel [(ngModel)]="=user.firstname">        //FormControl
+  </p>
+  <p>
+    <label for="lastname">Last Name</label>
+    <input type="text" id="lastname" name="lastname" ngModel [(ngModel)]="=user.lastname">          //FormControl
+  </p>
+  <p>
+    <label for="email">Email </label>
+    <input type="text" id="email" name="email" ngModel [(ngModel)]="=user.email">                // FormControl
+  </p>
+  <button type="submit" >Submit</button>
+  <button type="button" (click)="resetForm(loginForm)">Reset</button>
+  </form>
+
+  <p>Valid: {{loginForm.valid}}</p>
+  <p>InValid: {{loginForm.invalid}}</p>
+  <p>Submitted: {{loginForm.submitted}}</p>
+  <p>dirty: {{loginForm.dirty}}</p>
+  <p>Prestine: {{loginForm.prestine}}</p>

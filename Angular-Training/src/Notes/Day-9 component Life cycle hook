@@ -1,0 +1,11 @@
+******** Component Life Cycle Hook *****
+
+There are 8 lifecycle hooks for Component
+1) ngOnchange
+2) ngOninit
+3) ngDocheck
+4) ngAfterviewInit
+5) ngAfterviewChecked
+6) ngAfterContentInit
+7) ngAfterContentChecked
+8) ngOnDestroy
